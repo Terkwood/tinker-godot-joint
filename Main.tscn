@@ -187,7 +187,7 @@ nodes/node_a = NodePath("../../RightLowerLeg")
 nodes/node_b = NodePath("..")
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0937586, 9.9295, 13.0921 )
+transform = Transform( -0.249654, 0, 0.968335, 0, 1, 0, -0.968335, 0, -0.249654, 18.4286, 9.9295, 7.60829 )
 current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
