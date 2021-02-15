@@ -25,7 +25,7 @@ const _COEFF = -50.0
 var _moving_foot = Foot.LEFT
 enum Foot { LEFT, RIGHT }
 var _step_progress = 0
-const _MAX_STEP = 100
+const _MAX_STEP = 68
 func _physics_process(_delta):
 	var upper_body = $Player/KinUpperBody
 	
