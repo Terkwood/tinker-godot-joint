@@ -21,7 +21,7 @@ func _input(_event):
 	if Input.is_action_just_released("ui_down") and !Input.is_action_just_released("ui_up"):
 		movement = Vector2(movement.x, 0)
 
-const _COEFF = 50.0
+const _COEFF = -50.0
 var _moving_foot = Foot.LEFT
 enum Foot { LEFT, RIGHT }
 var _step_progress = 0
