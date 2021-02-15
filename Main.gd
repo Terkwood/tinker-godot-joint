@@ -21,6 +21,6 @@ func _input(_event):
 	if Input.is_action_just_released("ui_down") and !Input.is_action_just_released("ui_up"):
 		movement = Vector2(movement.x, 0)
 
-const _COEFF = 25.0
+const _COEFF = 50.0
 func _physics_process(_delta):
-	$KinUpperBody.move_and_slide(Vector3(movement.x * _COEFF, 0, movement.y * _COEFF))
+	$Player/KinUpperBody.move_and_slide(Vector3(movement.x * _COEFF, 0, movement.y * _COEFF))
