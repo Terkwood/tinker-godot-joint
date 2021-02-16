@@ -175,3 +175,4 @@ shape = SubResource( 8 )
 [node name="HingeJoint" type="HingeJoint" parent="RightFoot"]
 nodes/node_a = NodePath("../../RightLowerLeg")
 nodes/node_b = NodePath("..")
+[connection signal="body_entered" from="FrontBoundary" to="." method="_on_FrontBoundary_body_entered"]

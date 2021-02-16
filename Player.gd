@@ -1,8 +1,10 @@
 extends Spatial
 
 onready var _walking = preload("res://walking.gd").new()
-#const MOVE = 0.1
 
+onready var _right_foot = $RightFoot
+onready var _left_foot = $LeftFoot
+onready var _kin_upper_body = $KinUpperBody
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_up"):
@@ -27,23 +29,20 @@ func _input(_event):
 const _COEFF = 11.0
 
 func _physics_process(_delta):
-	var upper_body = $KinUpperBody
 	var move_z = _convert(_walking.motion_z)
 	
 	var v = Vector3(0, 0, move_z * _COEFF)
-	upper_body.move_and_slide(v)	
+	_kin_upper_body.move_and_slide(v)	
 	_foot_node().move_and_slide(2.0 * v)
-#	_step_progress = (_step_progress + 1) % _MAX_STEP
-#	if _step_progress == 0:
-#		_change_foot()
+
 func _change_foot():
 	_walking.moving_foot = _walking.other_foot()
 
 func _foot_node():
 	if _walking.moving_foot == _walking.Foot.Left:
-		return $LeftFoot
+		return _left_foot
 	else:
-		return $RightFoot
+		return _right_foot
 
 func _convert(walk_motion) -> int:
 	if walk_motion == _walking.Motion.Decr:
@@ -51,3 +50,10 @@ func _convert(walk_motion) -> int:
 	if walk_motion == _walking.Motion.Incr:
 		return -1
 	return 0
+
+
+func _on_FrontBoundary_body_entered(body):
+	if body == _left_foot:
+		printerr("writeme")
+	if body == _right_foot:
+		printerr("writeme")
