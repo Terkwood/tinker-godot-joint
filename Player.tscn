@@ -54,24 +54,32 @@ material/0 = null
 
 [node name="FrontBoundary" type="Area" parent="KinUpperBody"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, -5.37544, 2.5 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/FrontBoundary"]
 shape = SubResource( 3 )
 
 [node name="BackBoundary" type="Area" parent="KinUpperBody"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, -5.37544, -1.08011 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/BackBoundary"]
 shape = SubResource( 3 )
 
 [node name="LeftBoundary" type="Area" parent="KinUpperBody"]
 transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65432e-14, 2.36489, -5.375, 0.694015 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/LeftBoundary"]
 shape = SubResource( 4 )
 
 [node name="RightBoundary" type="Area" parent="KinUpperBody"]
 transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65432e-14, -2.36472, -5.375, 0.694 )
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/RightBoundary"]
 shape = SubResource( 4 )
@@ -177,6 +185,8 @@ angular_limit/relaxation = 0.31
 
 [node name="RightFoot" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11046, 0, 0.734145 )
+collision_layer = 2
+collision_mask = 2
 
 [node name="MeshInstance" type="MeshInstance" parent="RightFoot"]
 mesh = SubResource( 8 )
@@ -190,3 +200,5 @@ nodes/node_a = NodePath("../../RightLowerLeg")
 nodes/node_b = NodePath("..")
 [connection signal="body_entered" from="KinUpperBody/FrontBoundary" to="." method="_on_FrontBoundary_body_entered"]
 [connection signal="body_entered" from="KinUpperBody/BackBoundary" to="." method="_on_BackBoundary_body_entered"]
+[connection signal="body_entered" from="KinUpperBody/LeftBoundary" to="." method="_on_LeftBoundary_body_entered"]
+[connection signal="body_entered" from="KinUpperBody/RightBoundary" to="." method="_on_RightBoundary_body_entered"]

@@ -58,3 +58,11 @@ func _on_BackBoundary_body_entered(body):
 func _handle_foot(body: PhysicsBody):
 	if body == _left_foot or body == _right_foot:
 		_walking.moving_foot = _walking.other_foot()
+
+
+func _on_LeftBoundary_body_entered(body):
+	_handle_foot(body)
+
+
+func _on_RightBoundary_body_entered(body):
+	_handle_foot(body)
