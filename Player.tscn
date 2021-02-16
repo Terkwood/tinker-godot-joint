@@ -65,13 +65,13 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, -5.3
 shape = SubResource( 3 )
 
 [node name="LeftBoundary" type="Area" parent="KinUpperBody"]
-transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65432e-14, 1.96316, -5.375, 0.694014 )
+transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65432e-14, 2.36489, -5.375, 0.694015 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/LeftBoundary"]
 shape = SubResource( 4 )
 
 [node name="RightBoundary" type="Area" parent="KinUpperBody"]
-transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65432e-14, -1.963, -5.375, 0.694 )
+transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65432e-14, -2.36472, -5.375, 0.694 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/RightBoundary"]
 shape = SubResource( 4 )
