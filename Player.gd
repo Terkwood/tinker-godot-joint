@@ -11,19 +11,19 @@ func _input(_event):
 		_walking.motion_z = _walking.Motion.Incr
 	if Input.is_action_just_pressed("ui_down"):
 		_walking.motion_z = _walking.Motion.Decr
-	if Input.is_action_just_pressed("ui_left"):
-		pass #movement = Vector2(-1.0 * MOVE, movement.y)
 	if Input.is_action_just_pressed("ui_right"):
-		pass #movement = Vector2(MOVE, movement.y)
+		_walking.motion_x = _walking.Motion.Incr
+	if Input.is_action_just_pressed("ui_left"):
+		_walking.motion_x = _walking.Motion.Decr
 
 	if Input.is_action_just_released("ui_up") and !Input.is_action_just_released("ui_down"):
-		_walking.motion_z = _walking.Motion.None
+		_walking.stop_z()
 	if Input.is_action_just_released("ui_down") and !Input.is_action_just_released("ui_up"):
-		_walking.motion_z = _walking.Motion.None
+		_walking.stop_z()
 	if Input.is_action_just_released("ui_left") and !Input.is_action_pressed("ui_right"):
-		pass # movement = Vector2(0, movement.y)
+		_walking.stop_x()
 	if Input.is_action_just_released("ui_right") and !Input.is_action_pressed("ui_left"):
-		pass #movement = Vector2(0, movement.y)
+		_walking.stop_x()
 
 
 const _COEFF = 3.0
