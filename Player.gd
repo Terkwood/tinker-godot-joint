@@ -27,7 +27,6 @@ func _input(_event):
 
 
 const _COEFF = 3.0
-
 func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z)
 	
@@ -49,11 +48,8 @@ func _convert(walk_motion) -> int:
 		return -1
 	return 0
 
-
 func _on_FrontBoundary_body_entered(body):
 	_handle_foot(body)
-
-
 
 func _on_BackBoundary_body_entered(body):
 	_handle_foot(body)
