@@ -24,16 +24,15 @@ func _input(_event):
 		pass #movement = Vector2(0, movement.y)
 
 
-const _COEFF = -50.0
+const _COEFF = 11.0
 
 func _physics_process(_delta):
-	var upper_body = $Player/KinUpperBody
+	var upper_body = $KinUpperBody
 	var move_z = _convert(_walking.motion_z)
 	
 	var v = Vector3(0, 0, move_z * _COEFF)
-	upper_body.move_and_slide(v)
-	
-#	_foot_node().move_and_slide(2.0 * v)
+	upper_body.move_and_slide(v)	
+	_foot_node().move_and_slide(2.0 * v)
 #	_step_progress = (_step_progress + 1) % _MAX_STEP
 #	if _step_progress == 0:
 #		_change_foot()
@@ -42,13 +41,13 @@ func _change_foot():
 
 func _foot_node():
 	if _walking.moving_foot == _walking.Foot.Left:
-		return $Player/LeftFoot
+		return $LeftFoot
 	else:
-		return $Player/RightFoot
+		return $RightFoot
 
 func _convert(walk_motion) -> int:
 	if walk_motion == _walking.Motion.Decr:
-		return -1
-	if walk_motion == _walking.Motion.Incr:
 		return 1
+	if walk_motion == _walking.Motion.Incr:
+		return -1
 	return 0
