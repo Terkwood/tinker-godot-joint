@@ -2,8 +2,8 @@ extends Spatial
 
 onready var _walking = preload("res://walking.gd").new()
 
-onready var _right_foot = $RightFoot
-onready var _left_foot = $LeftFoot
+onready var _right_foot = $RFoot
+onready var _left_foot = $LFoot
 onready var _kin_upper_body = $KinUpperBody
 
 func _input(_event):

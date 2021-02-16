@@ -84,20 +84,20 @@ collision_mask = 3
 [node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/RightBoundary"]
 shape = SubResource( 4 )
 
-[node name="LeftUpperLeg" type="RigidBody" parent="."]
+[node name="RUpperLeg" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.90029, 3.13039, 0.3817 )
 mass = 12.44
 physics_material_override = SubResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="LeftUpperLeg"]
+[node name="CollisionShape" type="CollisionShape" parent="RUpperLeg"]
 shape = SubResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="LeftUpperLeg"]
+[node name="MeshInstance" type="MeshInstance" parent="RUpperLeg"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0.267518 )
 mesh = SubResource( 7 )
 material/0 = null
 
-[node name="LeftHingeJoint" type="HingeJoint" parent="LeftUpperLeg"]
+[node name="LeftHingeJoint" type="HingeJoint" parent="RUpperLeg"]
 transform = Transform( 2.6543e-14, 1.62921e-07, -1, 1, -1.62921e-07, -1.50772e-19, -1.62921e-07, -1, -1.62921e-07, 0.171699, -0.134717, -0.682546 )
 nodes/node_a = NodePath("../../KinUpperBody")
 nodes/node_b = NodePath("..")
@@ -107,21 +107,21 @@ angular_limit/upper = 30.0
 angular_limit/lower = -30.0
 angular_limit/relaxation = 0.31
 
-[node name="LeftLowerLeg" type="RigidBody" parent="."]
+[node name="RLowerLeg" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.90029, 1.3122, 0.3817 )
 mass = 11.47
 
-[node name="CollisionShape" type="CollisionShape" parent="LeftLowerLeg"]
+[node name="CollisionShape" type="CollisionShape" parent="RLowerLeg"]
 shape = SubResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="LeftLowerLeg"]
+[node name="MeshInstance" type="MeshInstance" parent="RLowerLeg"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0.267518 )
 mesh = SubResource( 7 )
 material/0 = null
 
-[node name="LeftHingeJoint" type="HingeJoint" parent="LeftLowerLeg"]
+[node name="RHingeJoint" type="HingeJoint" parent="RLowerLeg"]
 transform = Transform( 2.6543e-14, 1.62921e-07, -1, 1, -1.62921e-07, -1.50772e-19, -1.62921e-07, -1, -1.62921e-07, 0.171699, -0.134717, -0.682546 )
-nodes/node_a = NodePath("../../LeftUpperLeg")
+nodes/node_a = NodePath("../../RUpperLeg")
 nodes/node_b = NodePath("..")
 params/bias = 0.99
 angular_limit/enable = true
@@ -129,33 +129,33 @@ angular_limit/upper = 30.0
 angular_limit/lower = -30.0
 angular_limit/relaxation = 0.31
 
-[node name="LeftFoot" type="KinematicBody" parent="."]
+[node name="RFoot" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08197, 0, 0.69196 )
 
-[node name="MeshInstance" type="MeshInstance" parent="LeftFoot"]
+[node name="MeshInstance" type="MeshInstance" parent="RFoot"]
 mesh = SubResource( 8 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="LeftFoot"]
+[node name="CollisionShape" type="CollisionShape" parent="RFoot"]
 shape = SubResource( 9 )
 
-[node name="HingeJoint" type="HingeJoint" parent="LeftFoot"]
-nodes/node_a = NodePath("../../LeftLowerLeg")
+[node name="HingeJoint" type="HingeJoint" parent="RFoot"]
+nodes/node_a = NodePath("../../RLowerLeg")
 nodes/node_b = NodePath("..")
 
-[node name="RightUpperLeg" type="RigidBody" parent="."]
+[node name="LUpperLeg" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.10273, 2.93819, 0 )
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape" parent="RightUpperLeg"]
+[node name="CollisionShape" type="CollisionShape" parent="LUpperLeg"]
 shape = SubResource( 10 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RightUpperLeg"]
+[node name="MeshInstance" type="MeshInstance" parent="LUpperLeg"]
 mesh = SubResource( 11 )
 material/0 = null
 
-[node name="RightHingeJoint" type="HingeJoint" parent="RightUpperLeg"]
+[node name="RightHingeJoint" type="HingeJoint" parent="LUpperLeg"]
 transform = Transform( 9.6679e-10, 1.62918e-07, -1, 0.999982, -0.00593413, -1.99411e-15, -0.00593413, -0.999982, -1.62921e-07, 0, -1.31307e-07, -0.805954 )
 nodes/node_a = NodePath("../../KinUpperBody")
 nodes/node_b = NodePath("..")
@@ -165,21 +165,21 @@ angular_limit/upper = 30.0
 angular_limit/lower = -30.0
 angular_limit/relaxation = 0.31
 
-[node name="RightLowerLeg" type="RigidBody" parent="."]
+[node name="LLowerLeg" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.10273, 1.07239, 0 )
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape" parent="RightLowerLeg"]
+[node name="CollisionShape" type="CollisionShape" parent="LLowerLeg"]
 shape = SubResource( 10 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RightLowerLeg"]
+[node name="MeshInstance" type="MeshInstance" parent="LLowerLeg"]
 mesh = SubResource( 11 )
 material/0 = null
 
-[node name="RightHingeJoint" type="HingeJoint" parent="RightLowerLeg"]
+[node name="LHingeJoint" type="HingeJoint" parent="LLowerLeg"]
 transform = Transform( 9.6679e-10, 1.62918e-07, -1, 0.999982, -0.00593413, -1.99411e-15, -0.00593413, -0.999982, -1.62921e-07, 0, -1.31307e-07, -0.805954 )
-nodes/node_a = NodePath("../../RightUpperLeg")
+nodes/node_a = NodePath("../../LUpperLeg")
 nodes/node_b = NodePath("..")
 params/bias = 0.92
 angular_limit/enable = true
@@ -187,20 +187,20 @@ angular_limit/upper = 30.0
 angular_limit/lower = -30.0
 angular_limit/relaxation = 0.31
 
-[node name="RightFoot" type="KinematicBody" parent="."]
+[node name="LFoot" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11046, 0, 0.734145 )
 collision_layer = 2
 collision_mask = 2
 
-[node name="MeshInstance" type="MeshInstance" parent="RightFoot"]
+[node name="MeshInstance" type="MeshInstance" parent="LFoot"]
 mesh = SubResource( 8 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="RightFoot"]
+[node name="CollisionShape" type="CollisionShape" parent="LFoot"]
 shape = SubResource( 9 )
 
-[node name="HingeJoint" type="HingeJoint" parent="RightFoot"]
-nodes/node_a = NodePath("../../RightLowerLeg")
+[node name="HingeJoint" type="HingeJoint" parent="LFoot"]
+nodes/node_a = NodePath("../../LLowerLeg")
 nodes/node_b = NodePath("..")
 [connection signal="body_entered" from="KinUpperBody/FrontBoundary" to="." method="_on_FrontBoundary_body_entered"]
 [connection signal="body_entered" from="KinUpperBody/BackBoundary" to="." method="_on_BackBoundary_body_entered"]
