@@ -26,7 +26,7 @@ func _input(_event):
 
 
 const _Z_COEFF = 3.0
-const _X_COEFF = 5.0
+const _X_COEFF = -5.0
 const _EPSILON = 0.001
 
 var _last_swap_ms = OS.get_ticks_msec()
