@@ -37,14 +37,14 @@ func _physics_process(_delta):
 #	_step_progress = (_step_progress + 1) % _MAX_STEP
 #	if _step_progress == 0:
 #		_change_foot()
-#func _change_foot():
-#	_moving_foot = Foot.RIGHT if _moving_foot == Foot.LEFT else Foot.LEFT
+func _change_foot():
+	_walking.moving_foot = _walking.other_foot()
 
-#func _foot_node():
-#	if _moving_foot == Foot.LEFT:
-		#return $Player/LeftFoot
-	#else:
-	#	return $Player/RightFoot
+func _foot_node():
+	if _walking.moving_foot == _walking.Foot.Left:
+		return $Player/LeftFoot
+	else:
+		return $Player/RightFoot
 
 func _convert(walk_motion) -> int:
 	if walk_motion == _walking.Motion.Decr:
