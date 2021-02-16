@@ -29,9 +29,10 @@ func _input(_event):
 const _COEFF = 3.0
 func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z)
+	var move_x = _convert(_walking.motion_x)
 	
-	var v = Vector3(0, 0, move_z * _COEFF)
-	_kin_upper_body.move_and_slide(v)	
+	var v = Vector3(move_x * _COEFF, 0, move_z * _COEFF)
+	_kin_upper_body.move_and_slide(v)
 	_foot_node().move_and_slide(2.0 * v)
 
 
