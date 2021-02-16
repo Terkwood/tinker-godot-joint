@@ -26,7 +26,7 @@ func _input(_event):
 		pass #movement = Vector2(0, movement.y)
 
 
-const _COEFF = 11.0
+const _COEFF = 1.0
 
 func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z)
@@ -35,8 +35,6 @@ func _physics_process(_delta):
 	_kin_upper_body.move_and_slide(v)	
 	_foot_node().move_and_slide(2.0 * v)
 
-func _change_foot():
-	_walking.moving_foot = _walking.other_foot()
 
 func _foot_node():
 	if _walking.moving_foot == _walking.Foot.Left:
@@ -53,7 +51,13 @@ func _convert(walk_motion) -> int:
 
 
 func _on_FrontBoundary_body_entered(body):
-	if body == _left_foot:
-		printerr("writeme")
-	if body == _right_foot:
-		printerr("writeme")
+	_handle_foot(body)
+
+
+
+func _on_BackBoundary_body_entered(body):
+	_handle_foot(body)
+	
+func _handle_foot(body: PhysicsBody):
+	if body == _left_foot or body == _right_foot:
+		_walking.moving_foot = _walking.other_foot()
