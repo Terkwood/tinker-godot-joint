@@ -1,0 +1,179 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=2]
+height = 2.0
+
+[sub_resource type="CapsuleMesh" id=3]
+mid_height = 2.0
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2, 0, 1 )
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 50.0
+rough = true
+
+[sub_resource type="CapsuleShape" id=5]
+radius = 0.5
+
+[sub_resource type="CapsuleMesh" id=6]
+radius = 0.5
+
+[sub_resource type="CapsuleMesh" id=7]
+radius = 0.3
+
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.3
+
+[sub_resource type="CapsuleShape" id=9]
+radius = 0.5
+
+[sub_resource type="CapsuleMesh" id=10]
+radius = 0.5
+
+[node name="Player" type="Spatial"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.750019, 0 )
+script = ExtResource( 1 )
+
+[node name="KinUpperBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.37544, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinUpperBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="KinUpperBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="FrontBoundary" type="Area" parent="KinUpperBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.37544, 2.5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/FrontBoundary"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="BackBoundary" type="Area" parent="KinUpperBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.37544, -1.08011 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinUpperBody/BackBoundary"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="LeftUpperLeg" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.90029, 3.13039, 0.3817 )
+mass = 12.44
+physics_material_override = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="LeftUpperLeg"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="LeftUpperLeg"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0.267518 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="LeftHingeJoint" type="HingeJoint" parent="LeftUpperLeg"]
+transform = Transform( 2.6543e-14, 1.62921e-07, -1, 1, -1.62921e-07, -1.50772e-19, -1.62921e-07, -1, -1.62921e-07, 0.171699, -0.134717, -0.682546 )
+nodes/node_a = NodePath("../../KinUpperBody")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+angular_limit/enable = true
+angular_limit/upper = 30.0
+angular_limit/lower = -30.0
+angular_limit/relaxation = 0.31
+
+[node name="LeftLowerLeg" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.90029, 1.3122, 0.3817 )
+mass = 11.47
+
+[node name="CollisionShape" type="CollisionShape" parent="LeftLowerLeg"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="LeftLowerLeg"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0.267518 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="LeftHingeJoint" type="HingeJoint" parent="LeftLowerLeg"]
+transform = Transform( 2.6543e-14, 1.62921e-07, -1, 1, -1.62921e-07, -1.50772e-19, -1.62921e-07, -1, -1.62921e-07, 0.171699, -0.134717, -0.682546 )
+nodes/node_a = NodePath("../../LeftUpperLeg")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+angular_limit/enable = true
+angular_limit/upper = 30.0
+angular_limit/lower = -30.0
+angular_limit/relaxation = 0.31
+
+[node name="LeftFoot" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08197, 0, 0.69196 )
+
+[node name="MeshInstance" type="MeshInstance" parent="LeftFoot"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="LeftFoot"]
+shape = SubResource( 8 )
+
+[node name="HingeJoint" type="HingeJoint" parent="LeftFoot"]
+nodes/node_a = NodePath("../../LeftLowerLeg")
+nodes/node_b = NodePath("..")
+
+[node name="RightUpperLeg" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.10273, 2.93819, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RightUpperLeg"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RightUpperLeg"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="RightHingeJoint" type="HingeJoint" parent="RightUpperLeg"]
+transform = Transform( 9.6679e-10, 1.62918e-07, -1, 0.999982, -0.00593413, -1.99411e-15, -0.00593413, -0.999982, -1.62921e-07, 0, -1.31307e-07, -0.805954 )
+nodes/node_a = NodePath("../../KinUpperBody")
+nodes/node_b = NodePath("..")
+params/bias = 0.92
+angular_limit/enable = true
+angular_limit/upper = 30.0
+angular_limit/lower = -30.0
+angular_limit/relaxation = 0.31
+
+[node name="RightLowerLeg" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.10273, 1.07239, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RightLowerLeg"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RightLowerLeg"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="RightHingeJoint" type="HingeJoint" parent="RightLowerLeg"]
+transform = Transform( 9.6679e-10, 1.62918e-07, -1, 0.999982, -0.00593413, -1.99411e-15, -0.00593413, -0.999982, -1.62921e-07, 0, -1.31307e-07, -0.805954 )
+nodes/node_a = NodePath("../../RightUpperLeg")
+nodes/node_b = NodePath("..")
+params/bias = 0.92
+angular_limit/enable = true
+angular_limit/upper = 30.0
+angular_limit/lower = -30.0
+angular_limit/relaxation = 0.31
+
+[node name="RightFoot" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11046, 0, 0.734145 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RightFoot"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="RightFoot"]
+shape = SubResource( 8 )
+
+[node name="HingeJoint" type="HingeJoint" parent="RightFoot"]
+nodes/node_a = NodePath("../../RightLowerLeg")
+nodes/node_b = NodePath("..")
+[connection signal="body_entered" from="KinUpperBody/FrontBoundary" to="." method="_on_FrontBoundary_body_entered"]
+[connection signal="body_entered" from="KinUpperBody/BackBoundary" to="." method="_on_BackBoundary_body_entered"]
