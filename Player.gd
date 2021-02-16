@@ -25,7 +25,7 @@ func _input(_event):
 		_walking.stop_x()
 
 
-const _Z_COEFF = 3.0
+const _Z_COEFF = 5.0
 const _X_COEFF = -5.0
 const _EPSILON = 0.001
 
