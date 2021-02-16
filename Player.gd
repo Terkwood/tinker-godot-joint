@@ -28,6 +28,10 @@ func _input(_event):
 const _Z_COEFF = 3.0
 const _X_COEFF = 5.0
 const _EPSILON = 0.001
+
+var _last_swap_ms = OS.get_ticks_msec()
+const _DEBOUNCE_MS = 50
+
 func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z) * _Z_COEFF
 	var move_x = _convert(_walking.motion_x) * _X_COEFF
@@ -52,8 +56,10 @@ func _convert(walk_motion) -> int:
 	return 0
 
 func _handle_foot(body: PhysicsBody):
-	if body == _foot_node():
+	var now_ms = OS.get_ticks_msec()
+	if body == _foot_node() and _last_swap_ms + _DEBOUNCE_MS < now_ms:
 		_walking.moving_foot = _walking.other_foot()
+		_last_swap_ms = OS.get_ticks_msec()
 
 func _on_LeftBoundary_body_entered(body):
 	_handle_foot(body)
