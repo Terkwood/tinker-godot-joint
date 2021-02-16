@@ -8,5 +8,5 @@ enum Motion {
 
 enum Foot { Left, Right }
 
-var x_motion = Motion.None
-var z_motion = Motion.None
+var motion_x = Motion.None
+var motion_z = Motion.None
