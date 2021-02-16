@@ -1,10 +1,7 @@
 extends Spatial
 
-const Walking = preload("res://walking.gd")
-
+onready var _walking = preload("res://walking.gd").new()
 #const MOVE = 0.1
-
-
 
 
 func _input(_event):
