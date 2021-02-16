@@ -32,21 +32,17 @@ func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z) * _Z_COEFF
 	var move_x = _convert(_walking.motion_x) * _X_COEFF
 	
-	_kin_upper_body.move_and_slide(Vector3(move_x,0,move_z))
-	_foot_node_z().move_and_slide(2.0 * Vector3(0,0,move_z))
-	_foot_node_x().move_and_slide(2.0 * Vector3(move_x,0,0))
+	var v = Vector3(move_x,0,move_z)
+	_kin_upper_body.move_and_slide(v)
+	_foot_node().move_and_slide(2.0 * v)
 
 
-func _foot_node_x():
-	if _walking.moving_foot_x == _walking.Foot.Left:
+func _foot_node():
+	if _walking.moving_foot == _walking.Foot.Left:
 		return _left_foot
 	else:
 		return _right_foot
-func _foot_node_z():
-	if _walking.moving_foot_z == _walking.Foot.Left:
-		return _left_foot
-	else:
-		return _right_foot
+
 
 func _convert(walk_motion) -> int:
 	if walk_motion == _walking.Motion.Decr:
@@ -55,26 +51,19 @@ func _convert(walk_motion) -> int:
 		return -1
 	return 0
 
-func _handle_foot_x(body: PhysicsBody):
-	if body == _foot_node_x():
-		_walking.moving_foot_x = _walking.other_foot_x()
-
-func _handle_foot_z(body: PhysicsBody):
-	if body == _foot_node_z():
-		_walking.moving_foot_z = _walking.other_foot_z()
-
+func _handle_foot(body: PhysicsBody):
+	if body == _foot_node():
+		_walking.moving_foot = _walking.other_foot()
 
 func _on_LeftBoundary_body_entered(body):
-	_handle_foot_x(body)
-
+	_handle_foot(body)
 
 func _on_RightBoundary_body_entered(body):
-	_handle_foot_x(body)
-
+	_handle_foot(body)
 
 func _on_FrontBoundary_body_entered(body):
-	_handle_foot_z(body)
+	_handle_foot(body)
 
 func _on_BackBoundary_body_entered(body):
-	_handle_foot_z(body)
+	_handle_foot(body)
 	
