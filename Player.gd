@@ -56,11 +56,11 @@ func _convert(walk_motion) -> int:
 	return 0
 
 func _handle_foot_x(body: PhysicsBody):
-	if body == _left_foot or body == _right_foot:
+	if body == _foot_node_x():
 		_walking.moving_foot_x = _walking.other_foot_x()
 
 func _handle_foot_z(body: PhysicsBody):
-	if body == _left_foot or body == _right_foot:
+	if body == _foot_node_z():
 		_walking.moving_foot_z = _walking.other_foot_z()
 
 
