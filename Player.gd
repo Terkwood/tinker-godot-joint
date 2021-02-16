@@ -26,7 +26,7 @@ func _input(_event):
 		pass #movement = Vector2(0, movement.y)
 
 
-const _COEFF = 1.0
+const _COEFF = 3.0
 
 func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z)
