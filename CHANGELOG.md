@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/Terkwood/tinker-godot-joint/compare/v0.1.2...v0.1.3) (2021-02-16)
+
+
+### Features
+
+* adjust z coefficient ([9b2d4c9](https://github.com/Terkwood/tinker-godot-joint/commit/9b2d4c9e4e0239a1fbe48de265349ded68222d01))
+
+
+### Bug Fixes
+
+* flip X input ([c864a95](https://github.com/Terkwood/tinker-godot-joint/commit/c864a956ea64d9b82c23859f8170caab85022ab7))
+* prevent feet from escaping ([#9](https://github.com/Terkwood/tinker-godot-joint/issues/9)) ([3178968](https://github.com/Terkwood/tinker-godot-joint/commit/31789689ac0dc27d85c80cb15e32ff5fd01c339e))
+
 ### [0.1.2](https://github.com/Terkwood/tinker-godot-joint/compare/v0.1.1...v0.1.2) (2021-02-16)
 
 
