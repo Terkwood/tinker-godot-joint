@@ -19,13 +19,9 @@ func _input(_event):
 	if Input.is_action_just_pressed("ui_left"):
 		_walking.motion_x = _walking.Motion.Decr
 
-	if Input.is_action_just_released("ui_up") and !Input.is_action_just_released("ui_down"):
+	if Input.is_action_just_released("ui_up") or Input.is_action_just_released("ui_down"):
 		_walking.stop_z()
-	if Input.is_action_just_released("ui_down") and !Input.is_action_just_released("ui_up"):
-		_walking.stop_z()
-	if Input.is_action_just_released("ui_left") and !Input.is_action_pressed("ui_right"):
-		_walking.stop_x()
-	if Input.is_action_just_released("ui_right") and !Input.is_action_pressed("ui_left"):
+	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
 		_walking.stop_x()
 
 
@@ -39,9 +35,7 @@ func _physics_process(_delta):
 	var v = Vector3(move_x * _X_COEFF, 0, move_z * _Z_COEFF)
 	_kin_upper_body.move_and_slide(v)
 	_foot_node().move_and_slide(2.0 * v)
-	if _left_foot.translation.x > _left_boundary.translation.x:
-		# don't let the left foot escape !!
-		_left_foot.translation.x = _left_boundary.translation.x - _EPSILON
+
 
 func _foot_node():
 	if _walking.moving_foot == _walking.Foot.Left:
@@ -73,3 +67,4 @@ func _on_LeftBoundary_body_entered(body):
 
 func _on_RightBoundary_body_entered(body):
 	_handle_foot(body)
+
