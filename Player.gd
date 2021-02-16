@@ -6,6 +6,9 @@ onready var _right_foot = $RFoot
 onready var _left_foot = $LFoot
 onready var _kin_upper_body = $KinUpperBody
 
+onready var _left_boundary = $KinUpperBody/LeftBoundary
+onready var _right_boundary = $KinUpperBody/RightBoundary
+
 func _input(_event):
 	if Input.is_action_just_pressed("ui_up"):
 		_walking.motion_z = _walking.Motion.Incr
@@ -28,6 +31,7 @@ func _input(_event):
 
 const _Z_COEFF = 3.0
 const _X_COEFF = 5.0
+const _EPSILON = 0.001
 func _physics_process(_delta):
 	var move_z = _convert(_walking.motion_z)
 	var move_x = _convert(_walking.motion_x)
@@ -35,7 +39,9 @@ func _physics_process(_delta):
 	var v = Vector3(move_x * _X_COEFF, 0, move_z * _Z_COEFF)
 	_kin_upper_body.move_and_slide(v)
 	_foot_node().move_and_slide(2.0 * v)
-
+	if _left_foot.translation.x > _left_boundary.translation.x:
+		# don't let the left foot escape !!
+		_left_foot.translation.x = _left_boundary.translation.x - _EPSILON
 
 func _foot_node():
 	if _walking.moving_foot == _walking.Foot.Left:
