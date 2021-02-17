@@ -94,9 +94,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0.267518 )
 mesh = SubResource( 7 )
 material/0 = null
 
-[node name="LeftHingeJoint" type="HingeJoint" parent="RUpperLeg"]
+[node name="HingeJoint" type="HingeJoint" parent="RUpperLeg"]
 transform = Transform( 2.6543e-14, 1.62921e-07, -1, 1, -1.62921e-07, -1.50772e-19, -1.62921e-07, -1, -1.62921e-07, 0.171699, -0.134717, -0.682546 )
-nodes/node_a = NodePath("../../KinUpperBody")
+nodes/node_a = NodePath("../..")
 nodes/node_b = NodePath("..")
 params/bias = 0.99
 angular_limit/enable = true
@@ -152,9 +152,9 @@ shape = SubResource( 10 )
 mesh = SubResource( 11 )
 material/0 = null
 
-[node name="RightHingeJoint" type="HingeJoint" parent="LUpperLeg"]
+[node name="HingeJoint" type="HingeJoint" parent="LUpperLeg"]
 transform = Transform( 9.6679e-10, 1.62918e-07, -1, 0.999982, -0.00593413, -1.99411e-15, -0.00593413, -0.999982, -1.62921e-07, 0, -1.31307e-07, -0.805954 )
-nodes/node_a = NodePath("../../KinUpperBody")
+nodes/node_a = NodePath("../..")
 nodes/node_b = NodePath("..")
 params/bias = 0.92
 angular_limit/enable = true
