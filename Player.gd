@@ -4,10 +4,10 @@ onready var _walking = preload("res://walking.gd").new()
 
 onready var _right_foot = $RFoot
 onready var _left_foot = $LFoot
-onready var _kin_upper_body = $KinUpperBody
+onready var _kin_upper_body = self
 
-onready var _left_boundary = $KinUpperBody/LeftBoundary
-onready var _right_boundary = $KinUpperBody/RightBoundary
+onready var _left_boundary = $LeftBoundary
+onready var _right_boundary = $RightBoundary
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_up"):
@@ -38,11 +38,17 @@ func _physics_process(_delta):
 	
 	var v = Vector3(move_x,0,move_z)
 	_kin_upper_body.move_and_slide(v)
-	_foot_node().move_and_slide(2.0 * v)
+	_foot_node().move_and_slide(v)
+	_other_foot_node().move_and_slide(-1.0 * v)
 
 
 func _foot_node():
 	if _walking.moving_foot == _walking.Foot.Left:
+		return _left_foot
+	else:
+		return _right_foot
+func _other_foot_node():
+	if _walking.other_foot() == _walking.Foot.Left:
 		return _left_foot
 	else:
 		return _right_foot
