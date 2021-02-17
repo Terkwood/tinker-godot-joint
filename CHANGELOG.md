@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/Terkwood/tinker-godot-joint/compare/v0.1.3...v0.1.4) (2021-02-17)
+
+
+### Features
+
+* adjust knee joints ([#10](https://github.com/Terkwood/tinker-godot-joint/issues/10)) ([870983b](https://github.com/Terkwood/tinker-godot-joint/commit/870983b282e277a63a7fff61d1b9413ae6728d73))
+
 ### [0.1.3](https://github.com/Terkwood/tinker-godot-joint/compare/v0.1.2...v0.1.3) (2021-02-16)
 
 
